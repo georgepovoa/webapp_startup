@@ -1,0 +1,16 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+        <h5> User : {{current}}</h5>
+        <div>
+        {% for i in questoes_feitas %}
+            {% for j in i %}
+            <p>{{j}}</p>
+            
+            {% endfor %}
+            <hr>
+    {% endfor %}
+        </div>
+
+
+
+    {% endblock content %}

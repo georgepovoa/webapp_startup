@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name='viewport' content="width=device-width , initial-scale =1" />
+    <title>StartUp</title>
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css"%}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/content.css"%}" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<a class = "entrar_btn" href="/accounts/login">Entrar</a>
+<header class="hero">
+    
+    <div class="container spacing">
+        <h1 class="primary-title">Slogan da parada</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur ducimus, aliquid corporis amet excepturi beatae blanditiis, sunt enim
+            deserunt dicta eos iste veritatis eius voluptates neque nobis saepe. Officiis?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input class="homepPageInput" placeholder="Email" name = "email-user" type="text"/>
+            <input type="submit" class="btn" value="Vamos Lá  >" />
+            
+        </form>
+    </div>
+</header>
+
+<main>
+
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Produtos e Serviços</h2>
+            <div class="split">
+                <a href="" class="featured__itens">
+                    <img src="{%static 'images/online-test-color.png'%}" alt="" class="featured__image">
+                    <p class="featured__details"><span class="price">$99</span>Serviço</p>
+                </a>
+                <a href="" class="featured__itens">
+                    <img src="{%static 'images/data-storage.png'%}" alt="" class="featured__image">
+                    <p class="featured__details"><span class="price">$99</span>Serviço</p>
+                </a>
+                <a href="" class="featured__itens">
+                    <img src="{%static 'images/exam.png'%}" alt="" class="featured__image">
+                    <p class="featured__details"><span class="price">$99</span>Serviço</p>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="our-products">
+
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+
+            <article class="product produto-branco spacing">
+                <img src="{%static 'images/exam.png'%}" alt="" class="product__image">
+                <h3 class="product__title">nome prod</h3>
+                <p class="product__description"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi
+                    cupiditate veritatis ullam ipsum numquam possimus, tempore deserunt eius accusamus. Illo a veritatis
+                    voluptate hic tempore odit sed alias eveniet iste!</p>
+                <a href="" class="btn">Ver planos</a>
+            </article>
+
+            <article class="product produto-preto spacing">
+                <img src="{%static 'images/exam.png'%}" alt="" class="product__image">
+                <h3 class="product__title">nome prod</h3>
+                <p class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ex, animi
+                    incidunt deserunt, amet consequuntur eveniet quos voluptate sed nemo ad assumenda, ab cum cumque
+                    totam voluptatibus. Aut, sed molestias.</p>
+                <a href="" class="btn">Ver planos</a>
+            </article>
+
+            <article class="product produto-azul spacing">
+                <img src="{%static 'images/exam.png'%}" alt="" class="product__image">
+                <h3 class="product__title">nome prod</h3>
+                <p class="product__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quidem ut
+                    distinctio eos laboriosam ipsam reiciendis velit impedit molestiae natus. Obcaecati illum aut eius!
+                    Perspiciatis error laboriosam distinctio adipisci provident.</p>
+                <a href="" class="btn">Ver planos</a>
+            </article>
+
+        </div>
+    </section>
+</main>

@@ -1,0 +1,101 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name='viewport' content="width=device-width , initial-scale =1" />
+    <title>StartUp</title>
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css"%}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/navbar.css"%}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/content.css"%}" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    {% comment %} <nav>
+        <a href = "/"><img src= "https://www.logomaker.com/api/main/images/1j+ojFVDOMkX9Wytexe43D6khvCBqRBPmxjNwXs1M3EMoAJtliMkhvBq9...Q... "/></a>
+
+        <div class = "divnav">
+            <a href="/homequestao">Resolver Questoes</a>
+            
+           <a href="/feitas">Questoes Feitas</a>
+            <a href="/lei/0">Lei</a>
+            {% if user.is_authenticated %}
+            <a href = "/profile">{{user.get_username}}</a>
+            <a href="/logout">Logout</a>
+            {%else%}
+            <a href="/accounts/login">Login</a>
+            {% endif %}
+        </div>
+    </nav> {% endcomment %}
+
+    <div class="side-menu">
+
+        <img class = profile-side-menu src="{%static 'images/exam.png'%}"> 
+        
+           
+            
+            
+           
+                
+                {% if user.is_authenticated %}
+
+                <div class="item-menu">
+
+                    <a class= "link-side-menu" href="/lei/0">
+                        <img class = "side-menu-item" src="{%static 'images/pc.png'%}"/>
+                        <p class="hide"> Lei</p>
+                    </a>
+                </div>
+
+
+                <div class="item-menu">
+                    <a class= "link-side-menu" href="/homequestao">
+                        <img class = "side-menu-item" src="{%static 'images/pc.png'%}"/>
+                        <p class="hide"> Questoes</p>
+                    </a>
+                </div>
+
+
+
+                <div class="item-menu">
+            <a class= "link-side-menu" href = "/profile">
+                <img class = "side-menu-item" src="{%static 'images/pc.png'%}"/>
+                <p class="hide">{{user.get_short_name}}</p>
+            </a>
+            </div>
+            <div class="item-menu">
+            <a class= "link-side-menu" href="/accounts/logout">
+                <img class = "side-menu-item" src="{%static 'images/pc.png'%}"/>
+                <p class="hide">Logout</p>
+            </a>
+            </div>
+            
+
+
+                
+            
+            {%else%}
+            <div class="item-menu">
+            <a class= "link-side-menu" href="/accounts/login">
+                <img class = "side-menu-item" src="{%static 'images/pc.png'%}"/>
+                <p class="hide">Login</p>
+            </a>
+        </div>
+             
+            {% endif %}
+           
+            
+
+        </ul>
+
+    </div>
+    <div class="master-content">
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+
+</html>

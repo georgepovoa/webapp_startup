@@ -1,0 +1,53 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<section class="featured-cadernos">
+
+    <div class="container">
+        <form action="profile-picker" method="post">
+
+        <h2 class="section-title-cadernos">Cadernos</h2>
+
+        <div class="split">
+            
+                {% csrf_token  %}
+            {% for k , v in cadernos.items  %}
+            <button name = "caderno_selecionado" type="submit" value={{k}}>
+            <a class="featured__cadernos">
+
+                <img src="{%static 'images/online-test-color.png'%}" alt="" class="featured__image">
+               
+                <p class="featured__details_cadernos">{{v.nome_caderno}}</p>
+            </a>
+        </button>
+    
+
+            {% endfor %}
+        
+
+            <a href="create-caderno" class="featured__cadernos">
+
+                <img src="{%static 'images/online-test-color.png'%}" alt="" class="featured__image">
+               
+                <p class="featured__details_cadernos">Criar Caderno</p>
+            </a>
+        
+
+            
+        </div>
+  
+    </form>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,92 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+    <div class="homeQuestao">
+        <div class = "texto da lei">{{lei_txt}}</div>
+
+        <div class="info-bar">
+            <p class = "cargo">( {{cargo}}-</p>
+            <p class = "ano"> {{ano}}-</p>
+            <p class = "banca"> {{banca}}-</p>
+            <p class = "orgao"> {{orgao}})</p>
+        </div>
+
+        <div class= "conteudo-questao">
+            <br />
+            <p class="comando">{{comando}}
+            </p>
+            <br />
+
+            <p class="textoItem">
+            {{texto_item}}
+            </p>
+            {% if respondido == False %}
+            </br>
+            <form action="{% url 'questao' %}" method="post" class = "c-e-forms">
+                {% csrf_token %}
+                <div class="wrapper">
+                    <input type="radio" name="select" id="option-1" value = "Certo">
+                    <input type="radio" name="select" id="option-2" value = "Errado">
+                        <label for="option-1" class="option option-1">
+                        <div class="dot"></div>
+                            <span>Certo</span>
+                            </label>
+                        <label for="option-2" class="option option-2">
+                        <div class="dot"></div>
+                            <span>Errado</span>
+                        </label>
+                    </div>
+                    <br>
+                <button type = "submit" class = "responder-questao"> Responder</button>
+
+            </form>
+
+            {% else%}
+
+
+            {% if resultado%}
+            <b>Acertou !</b>
+            {%else%}
+            <b>Errou !</b>
+
+            {% endif %}
+            <form action='/q_e' method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            {% if gabarito == "Errado"%}
+            
+                
+
+                {{ form.as_p }}
+
+                <textarea class = "correcaoinput" name = "campo_texto">{{texto_item}}</textarea>
+                
+               
+            {%else %}
+                {{ form.as_p }}
+                <input class = "correcaoinput" type = "hidden" value = "{{texto_item}}" name = "campo_texto"/>
+                
+                
+
+            {% endif %}
+                <input type="hidden" value={{id}} name="user_id" />
+                <input type="hidden" value={{resultado}} name="resultado" />
+                <input type="hidden" value="{{texto_item}}" name="texto_item" />
+                <input type="hidden" value="{{ano}}" name = "ano" />
+                <input type="hidden" value="{{cargo}}" name = "cargo" />
+                <input type="hidden" value="{{banca}}" name = "banca" />
+                <input type="hidden" value="{{orgao}}" name = "orgao" />
+                <input type="hidden" value="{{loc_lei}}" name = "loc_lei" />
+
+                <br/>
+                <input type="submit" value="Enviar" />
+
+
+            </form>
+
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock content %}
+
+</html>

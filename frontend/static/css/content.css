@@ -1,0 +1,37 @@
+.homepage{
+    margin-left: 85px;
+    
+    
+    
+}
+.usernavdiv{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(111, 250, 250);
+    display:inline-block;
+    align-items: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    font-size: 0.85rem;
+  }
+
+.usernavdiv a{
+    font-size: x-small;
+    margin: 0;
+}
+  .navfirstname{
+      margin-right: 5px;
+      padding: 0;
+    color: blue;
+  }
+  .nome-email{
+      flex-direction: column;
+  }
+  .img-usernav{
+      width: 7%;
+      height: 70%;
+      border-radius: 100%;
+      background-color: black;
+      margin: 10px 10px 10px 10px;
+
+  }

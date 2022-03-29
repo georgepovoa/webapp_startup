@@ -1,0 +1,168 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+
+<style>
+
+</style>
+
+
+<h1>IMAGEM CORTADA</H1>
+          
+<img id = "corte" src = "data:image/png;base64,{{imagem_url}}" ></img>
+
+
+<!-- <img id = "corte" src = "{{imagem_url}}" style="display: none;" width="500" height="500"></img> -->
+
+
+<canvas id="canvas1" width="800px" height="500px" onmousedown="onclick_borracha(event)" onmouseup="onmouseup_borracha(event)" onmousemove="onmousemove_borracha(event)"></canvas>
+<!-- <canvas id="canvas1" width="{{width_crop}}" height="{{height_crop}}" onmousedown="onclick_borracha(event)" onmouseup="onmouseup_borracha(event)" onmousemove="onmousemove_borracha(event)"></canvas> -->
+
+<div class="config-limpar-imagem">
+<button onclick="mudar_para_rect()">Rect</button>
+<button onclick="mudar_para_borracha()">Borracha</button>
+<button onclick="resetar()">Clear</button>
+<button onclick="enviar()">enviar</button>
+
+</div>
+
+
+
+<script>
+
+    
+var image = document.getElementById("corte")
+    var canvas = document.getElementById("canvas1")
+
+    var hRatio = canvas.width / image.width    ;
+    var vRatio = canvas.height / image.height  ;
+    var ratio  = Math.min ( hRatio, vRatio );
+    
+    var context=canvas.getContext("2d");
+    var image=document.getElementById("corte");
+    var centerShift_x = ( canvas.width - image.width*ratio ) / 2;
+   var centerShift_y = ( canvas.height - image.height*ratio ) / 2;  
+   context.clearRect(0,0,canvas.width, canvas.height); 
+   context.drawImage(image, 0,0, image.width, image.height,
+                      centerShift_x,centerShift_y,image.width*ratio, image.height*ratio);
+
+   
+
+    
+   
+   
+   
+   
+  
+
+
+
+    // context.drawImage(image,0,0,image.width,image.height,0,0,image.width,image.height);
+    
+    var is_pressed = false
+    
+    var modo = "borracha"
+    
+    var comeco_click =[]
+    document.getElementById("canvas1").addEventListener("mouseenter", function(  ) {isOnDiv=true;});
+    document.getElementById("canvas1").addEventListener("mouseout", function(  ) {is_pressed=false;});
+    
+    var onclick_borracha = function(e){
+    
+        is_pressed = true
+        comeco_click = [e.layerX,e.layerY]
+    
+        
+    
+    }
+    var onmouseup_borracha = function(e){
+        is_pressed = false
+    
+    }
+    
+    var onmousemove_borracha = function(e){
+        
+        if(is_pressed && modo === "borracha"){
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+    
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+    
+        var x = e.layerX
+        var y = e.layerY
+        var radius =3;// Circle coordinates and radius.
+    
+        context.fillStyle="#ffffff";// Your eraser color (not transparent)
+    
+         context.beginPath();
+         context.arc(x,y,radius,0,Math.PI*2);
+         context.fill();
+    
+
+        }
+        if(is_pressed && modo === "retangulo"){
+    
+    
+            // x y width height
+    
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+    
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+    
+        var x = e.layerX
+        var y = e.layerY
+        var radius =3;// Circle coordinates and radius.
+    
+        context.fillStyle="#ffffff";// Your eraser color (not transparent)
+        context.beginPath();
+        // context.arc(x,y,radius,0,Math.PI*2);
+        context.fillRect(x, y, comeco_click[0]-x, comeco_click[1]-y);
+    
+    
+        }
+    
+    }
+    
+    var enviar = function(){
+        var imagem_do_canvas = canvas.toDataURL("image/png")
+        console.log(imagem_do_canvas)
+        let data = {"base64_img":"teste"}
+        
+        
+        data.base64_img = imagem_do_canvas
+    fetch("https://api-startup-luka-xuxu.herokuapp.com/base64ToS3",{
+        method:"POST",
+        headers:{'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:8000'},
+        body:JSON.stringify(data)
+    }).then(res => {
+  console.log("Request complete! response:", res);
+  console.log(data)
+});       
+        
+
+    }
+    
+    
+    var mudar_para_rect = function(){
+        modo = "retangulo"
+    }
+    
+    var mudar_para_borracha = function(){
+        modo = "borracha"
+    }
+
+    var resetar = function(){
+        var canvas = document.getElementById("canvas1")
+    var context=canvas.getContext("2d");
+    var image=document.getElementById("corte");
+    context.drawImage(image,0,0,image.width,image.height,0,0,image.width,image.height);
+    }
+    
+    
+        </script>
+
+
+
+{% endblock content %}
