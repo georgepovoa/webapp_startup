@@ -9,7 +9,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
 import rest_framework
-from api.models import User, UserProfile, Anexo2
+from api.models import User, UserProfile
 import json
 import difflib
 import requests
@@ -49,15 +49,6 @@ class PostResposta(forms.Form):
 
 
 
-class AnexoForm(forms.ModelForm):
-    titulo = forms.CharField(required=False)
-    grupo = forms.CharField(required=False,widget=forms.HiddenInput())
-    photo = forms.FileField(required=False)
-    
-    class Meta:
-        model = Anexo2
-        fields=['photo']
-        
 
 
 def index(request, *args, **kwargs):
@@ -461,4 +452,7 @@ def imagem_cortada(request):
 
 
     return render(request,template_name="frontend/imagem_cortada.html",context={"imagem_url":img_str,"width_crop":width_crop,"height_crop":height_crop})
+
+
+
     

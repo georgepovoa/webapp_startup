@@ -24,15 +24,3 @@ class UserProfile(models.Model):
 
 
 
-################################ ANEXO #################################################
-
-
-
-class Anexo2(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='anexo2')
-    titulo = models.CharField(max_length=255)
-    show_name = models.CharField(max_length=255)
-    grupo = models.CharField(max_length=150)
-    photo = models.FileField(upload_to='anexo/')
-    endereco = models.CharField(max_length=50)
-# ################################ ANEXO #################################################

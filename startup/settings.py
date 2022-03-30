@@ -79,17 +79,27 @@ WSGI_APPLICATION = 'startup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'startup',
-        # 'USER' : 'root',
-        # 'HOST':'localhost',
-        # 'PORT':'3306',
-        # 'PASSWORD':'asdasd12'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         # 'ENGINE': 'django.db.backends.mysql',
+#         # 'NAME': 'startup',
+#         # 'USER' : 'root',
+#         # 'HOST':'localhost',
+#         # 'PORT':'3306',
+#         # 'PASSWORD':'asdasd12'
 
+#     }
+# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "d9dq64oov16uah",
+        "USER": "bduesvzctiewqs",
+        "PASSWORD": "1f1791940928f76266185ffadfa83a0c8c60e8a1b9ebd26457c29d314fca6b84",
+        "HOST": "ec2-54-173-77-184.compute-1.amazonaws.com",
+        "PORT": "5432",
     }
 }
 
