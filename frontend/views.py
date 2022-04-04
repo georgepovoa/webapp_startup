@@ -129,14 +129,6 @@ def submit_q_e(request, *args, **kwargs):
         return d
     # o submit_q_e é o form que aparece depois do usuário responder 
     # Só as questões falsas pq precisam de correção do usuário
-    form = AnexoForm(request.POST, request.FILES)
-    if form.is_valid() and request.FILES:
-        print(request.FILES, "REQUESTFILES")
-        new_anex = Anexo2(user = request.user,titulo =form.cleaned_data['titulo'],show_name=form.cleaned_data['titulo'],grupo = "filho",photo = request.FILES['photo'],endereco = "cf88,0,,,,0,,,")
-        new_anex.save()
-        print(new_anex)
-    else :
-        print(form.errors )
     #recebe correcao e separa em uma lista para colocar em Maiúsculo as palavras alteradas0
     correcao = request.POST["campo_texto"]
 
@@ -236,7 +228,6 @@ def questao(request, *args, **kwargs):
                 return render(request, 'frontend/questao.html',
                               {
                                   'current': request.user,
-                                  'form': AnexoForm(),
                                   'id': id,
                                   'ano': ano,
                                   'banca': banca,
@@ -260,7 +251,6 @@ def questao(request, *args, **kwargs):
                 return render(request, 'frontend/questao.html',
                           {
                               'current': request.user,
-                              'form': AnexoForm(),
                               'id': id,
                               'ano': ano,
                               'banca': banca,
