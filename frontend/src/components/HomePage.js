@@ -16,7 +16,7 @@ export default class HomePage extends Component {
     }
 
     async componentDidMount(){
-        const response = await axios.get("/api/current")
+        const response = await axios.get("/current-user")
 
         this.setState({current_user : response.data})
         

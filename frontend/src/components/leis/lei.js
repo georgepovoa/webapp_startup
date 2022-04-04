@@ -25,11 +25,11 @@ class Lei extends React.Component {
         const response_api = await axios.get("https://api-startup-luka-xuxu.herokuapp.com/titulo")
 
 
-        const response = await axios.get("/api/current")
+        const response = await axios.get("/current-user")
 
-        const response_questoes = await axios.get("https://api-startup-luka-xuxu.herokuapp.com/get_all_q_user/"+response.data[0].email)
+        const response_questoes = await axios.get("https://api-startup-luka-xuxu.herokuapp.com/get_all_q_user/"+response.data.email)
 
-        const response_caderno = await axios.get("https://api-startup-luka-xuxu.herokuapp.com/cadernos/"+response.data[0].email)
+        const response_caderno = await axios.get("https://api-startup-luka-xuxu.herokuapp.com/cadernos/"+response.data.email)
 
         var id_caderno = response_caderno.data.caderno_ativo
 
@@ -38,7 +38,7 @@ class Lei extends React.Component {
         var lista_caderno = response_caderno.data.cadernos[id_caderno].indices_lei
         
         this.setState({
-            current_user: response.data[0].email,
+            current_user: response.data.email,
             titulos: response_api.data,
             lei_id_alteradas:response_questoes.data,
             filtro_caderno:lista_caderno,

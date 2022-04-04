@@ -17,9 +17,10 @@ export default class App extends Component {
     }
 
     async componentDidMount(){
-        const response = await axios.get("/api/current")
+        const response = await axios.get("/current-user")
+        console.log(response.data[0])
 
-        this.setState({current_user:response.data[0]})
+        this.setState({current_user:response.data.email})
     
         
     }
@@ -29,7 +30,7 @@ export default class App extends Component {
 
 
     render() {
-        
+        console.log(this.state.current_user)
         
 
 

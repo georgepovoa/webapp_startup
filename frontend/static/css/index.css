@@ -63,7 +63,7 @@ h1,h2,h3,p{
 }
 
 section{
-  margin-left: 5rem;
+  /*margin-left: 5rem;*/
   padding: 7em 0;
 }
 .section-title{
@@ -110,11 +110,14 @@ section{
   flex-wrap: wrap;
   gap:1em;
   justify-content: center;
+  
 }
 
 .split >*{
   flex-basis: 30%;
   min-width: 15em;
+  background: none;
+  border: none;
 }
 
 
@@ -169,6 +172,12 @@ section{
 .featured__itens:hover .featured__details,
 .featured__itens:focus .featured__details{
   opacity: 1;
+}
+
+.featured__image{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 
@@ -583,26 +592,24 @@ input[type="radio"]{
   left: 0;
   background-color: var(--cinza);
   height:100% ;
-  width: 5rem;
+  width: 7rem;
   position: fixed;
   margin-right:15px ;
   list-style-type: none;
-  align-items: center;
+  align-items: flex-start;
   
   
 }
 
 .hide {
-  display: none;
-  margin-left:10px ;
-}
-
-.side-menu-item:hover + .hide {
   display: inline-block;
   color: white;
   align-self: center;
   text-decoration: none;
+  margin-left: 15px;
 }
+
+
 .link-side-menu{
   text-decoration: none;
 }
@@ -615,11 +622,16 @@ input[type="radio"]{
 }
 .item-menu a{
   display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .side-menu-item{
-  width: 4rem;
-  border-radius: 50%;
+  width: 2rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:1rem ;
 
 }
 .master-content{
@@ -651,7 +663,11 @@ input[type="radio"]{
   width: 100%;
   height: 100%;
   justify-content: space-around;
+  
 }
+
+
+
 .escolher{
   width: 30%;
   padding: 10px;
@@ -724,6 +740,8 @@ input[type="radio"]{
   margin-left: 15%;
 }
 
+
+
 .caderno-react-nome{
   display: inline-flex;
     justify-content: center;
@@ -790,4 +808,26 @@ input[type="radio"]{
 
 .upload-image-master > * {
   margin: 30px 15px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .escolher {
+    width: 70%;
+    
+  }
+  .escolhidos{
+    width: 70%;
+  }
+  .create-caderno-lei{
+    width: 70%;
+  }
+  .cadernoreact{
+    display: block;
+  }
+  .criar-caderno-btn-area{
+    position:fixed;
+    bottom: 0%;
+    right: 0%;
+  }
 }

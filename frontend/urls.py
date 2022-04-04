@@ -1,7 +1,7 @@
 from unicodedata import name
 from django.urls import path
 from django.urls.conf import include
-from.views import create_caderno, index, questao, submit_q_e,register_request,home_user_view,homepage, tela_profile_picker,logout_screen,post_react_create_caderno,imagem_cortada
+from.views import create_caderno, index, questao, submit_q_e,register_request,home_user_view,homepage, tela_profile_picker,logout_screen,post_react_create_caderno,imagem_cortada,current_user
 
 urlpatterns = [
     path('',homepage, name="homepage"),
@@ -19,7 +19,8 @@ urlpatterns = [
     path("logout",logout_screen,name = "logout"),
     path("createcadernoreact",post_react_create_caderno,name="createcadernoreact"),
     path("imagem-cortada",imagem_cortada,name="imagem_cortada"),
-    
+
+    path("current-user",current_user,name="current_user")
     
 
     

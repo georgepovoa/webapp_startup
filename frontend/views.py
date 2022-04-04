@@ -1,3 +1,4 @@
+
 from django import forms, http
 from django.db.models import fields
 from django.http import response
@@ -8,7 +9,6 @@ from matplotlib import image
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate,logout
 from django.contrib import messages
-import rest_framework
 from api.models import User, UserProfile
 import json
 import difflib
@@ -18,7 +18,8 @@ import base64
 from django.core.files.base import ContentFile
 from PIL import Image
 from io import BytesIO
-
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
 from django.core.files.base import ContentFile
@@ -78,13 +79,23 @@ def tela_profile_picker(request):
         requests.put(api_url + "/cad/definir_atual?user={}&caderno_id={}".format(request.user,caderno_selecionado))
 
         return redirect("homeuser/{}".format(caderno_selecionado))
+    
     user = request.user
     if user.is_authenticated:
         response = requests.get(api_url+"/cadernos/{}".format(user)).json()
-        if response != "NoneType":
-            return render(request,template_name="frontend/profile_picker.html",context = {"cadernos":response["cadernos"]})
+        if response != None:
+            print("if profile-picker")
+            print(response)
+            #(https://api-startup-luka-xuxu.herokuapp.com/cadernos?user=george_povoa%40hotmail.com)
+            contador = len(response["cadernos"])+2
+            return render(request,template_name="frontend/profile_picker.html",context = {"cadernos":response["cadernos"],"contador":contador})
         else:
-            return render(request,template_name="frontend/profile_picker.html")
+            #criar caderno
+            requests.post(api_url+"/cadernos?user={}".format(request.user))
+            print("else profile-picker")
+            print(response)
+            contador=1
+            return render(request,template_name="frontend/profile_picker.html",context = {"contador":contador})
     else:
         return redirect("accounts/login")
 
@@ -173,7 +184,12 @@ def questao(request, *args, **kwargs):
     # Aqui pego as questões que o usuario já fez
     
     api_usuario_questoes = requests.get(api_url+"/user/{}".format(request.user)).json()
-    lista_do_usuario = api_usuario_questoes["questoes_feitas"]
+    if api_usuario_questoes == None:
+        lista_do_usuario = []
+    else:
+        lista_do_usuario = api_usuario_questoes["questoes_feitas"]
+    
+
     lista_do_usuario = "&q=".join(str(x) for x in lista_do_usuario)
     
 
@@ -380,6 +396,9 @@ def create_caderno(request):
     if request.method == "POST" and request.POST["submit"] == "Criar caderno":
         print(request.user)
         cadernos_dict = requests.get(api_url+"/cadernos/{}".format(request.user)).json()
+        if cadernos_dict == None:
+            cadernos_dict = {}
+            cadernos_dict["cadernos"]=[]
         if len(list(cadernos_dict["cadernos"])) !=0:
             new_id = int(list(cadernos_dict["cadernos"])[-1]) + 1
         else:
@@ -396,9 +415,9 @@ def create_caderno(request):
         cargos_str = '"cargos":{}'.format(cargos)
         print(request.POST["nome_caderno"])
         completo = "{" + ind_lei_str + ","+ bancas_str +","+cargos_str +"}"        
-        requests.put(api_url+"/cadernos?user={}&id={}&nome_caderno={}".format(request.user,new_id,request.POST["nome_caderno"]),data = completo)
+        print(requests.put(api_url+"/cadernos?user={}&id={}&nome_caderno={}".format(request.user,new_id,request.POST["nome_caderno"]),data = completo))
         
-        return redirect("profile-picker")
+        return redirect("profile_picker")
 
 
     user = request.user
@@ -455,4 +474,12 @@ def imagem_cortada(request):
 
 
 
+@api_view(['GET'])
+def current_user(request):
+    user = request.user
+    print(user.email)
+    return Response({
+      'email' : user.email,
+       # and so on...
+    })
     
