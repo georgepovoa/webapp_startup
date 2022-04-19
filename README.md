@@ -9,3 +9,6 @@
 #### Telas de login e cadastro ainda não mostram erros e requisitos para criação de usuário
 
 #### Para teste utilize login : admin@admin.com senha : senhaparateste
+
+
+###### Caso a aplicação apresente algum erro, estou fazendo alterações no banco de dados e API.
