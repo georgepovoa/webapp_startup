@@ -297,6 +297,7 @@ def register_request(request):
             user.save()
             login(request,user)
             messages.success(request,"Registration successful")
+            requests.post(api_url+"/createuser?user={}".format(request.user))
             requests.post(api_url+"/cadernos?user={}".format(request.user))
             return redirect("/accounts/login")
         messages.error(request,"Unsuccessful registration. Invalid information")
