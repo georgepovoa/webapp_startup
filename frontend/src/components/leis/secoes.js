@@ -30,7 +30,7 @@ class Secoes extends React.Component {
         var subsecoes = []
 
         lista_recebidos.map(async i => {
-            string_list += "item_ids="+i+"&"
+            string_list += "lista_de_ids="+i+"&"
 
             
         })

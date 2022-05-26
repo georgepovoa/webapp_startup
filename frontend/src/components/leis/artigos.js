@@ -28,7 +28,7 @@ class Artigo extends React.Component {
         if (lista_recebidos.constructor === Array) {
 
             lista_recebidos.map(async i => {
-                string_list += "item_ids=" + i + "&"
+                string_list += "lista_de_ids=" + i + "&"
 
 
             })

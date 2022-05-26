@@ -26,7 +26,7 @@ class Nivel2 extends React.Component {
         if (lista_recebidos.constructor === Array) {
             
             lista_recebidos.map(async i => {
-                string_list += "item_ids="+i+"&"
+                string_list += "lista_de_ids="+i+"&"
             })
             var subordinado = await axios.get('https://api-startup-luka-xuxu.herokuapp.com/' + string_list)
             nivel3 = subordinado.data

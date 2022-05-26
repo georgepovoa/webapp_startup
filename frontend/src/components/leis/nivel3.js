@@ -29,7 +29,7 @@ class Nivel3 extends React.Component {
         var nivel4 = []
 
         lista_recebidos.map( i => {
-            string_list += "item_ids="+i+"&"
+            string_list += "lista_de_ids="+i+"&"
 
 
         })

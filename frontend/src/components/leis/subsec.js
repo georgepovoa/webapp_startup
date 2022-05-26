@@ -21,7 +21,7 @@ class SubSec extends React.Component {
     var string_list = "lista/{lista_id}?"
     var artigo = []
     lista_recebidos.map(async i => {
-      string_list += "item_ids="+i+"&"
+      string_list += "lista_de_ids="+i+"&"
     })
     var subordinado = await axios.get('https://api-startup-luka-xuxu.herokuapp.com/' + string_list)
     if (subordinado.data[0].tipo == "artigo") {
