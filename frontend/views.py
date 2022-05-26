@@ -211,7 +211,7 @@ def questao(request, *args, **kwargs):
     texto_item = data["texto_item"].strip()
     loc_lei = data["loc_lei"]
 
-    lei_txt = requests.get(api_url+"/lei/{}".format(id)).json()[0]["texto_completo"]
+    lei_txt = requests.get(api_url+"/lei/{}".format(loc_lei)).json()[0]["texto_completo"]
 ## Pegar infos da questão ##
 
 #Primeiro if é só da resposta
