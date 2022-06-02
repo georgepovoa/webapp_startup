@@ -69,7 +69,7 @@ class Artigo extends React.Component {
 
                 {questoes_lista.map(i => {
                     if (isOpen) {
-                        return <Questoes texto={i.correcao} id_questao = {i.id_q} aberto={isOpen}></Questoes>
+                        return <Questoes texto={i.correcao} id_questao = {i.id_q} aberto={isOpen} banca = {i.banca} orgao = {i.orgao} cargo = {i.cargo} ano ={i.ano}></Questoes>
                     }
                 })}
 
