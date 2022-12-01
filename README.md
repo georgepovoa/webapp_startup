@@ -1,19 +1,20 @@
-# Projeto Web APP
 
+# Sistema de auxílio ao estudo
 
-### https://webapp-startup-xuxu-luka.herokuapp.com/
+## objetivo 
 
-### Finalidade do projeto : Desenvolver uma plataforma de estudos com metologia baseada na resolução de questões, correção delas e revisão delas aliadas ao material base(provido pelo site ou pelo usuário
-
-### Tecnologias envolvidas : Django(back end) , ReactJs(front end)
-
-### Projeto ainda em andamento.
-
-#### Telas de login e cadastro ainda não mostram erros e requisitos para criação de usuário
+Auxiliar o estudo com uma metodologia voltada para a revisão de um material criado pela interação entre usuário e site.
 
 
 
-#### Para teste utilize login : admin@admin.com senha : senhaparateste
 
 
-###### Caso a aplicação apresente algum erro, estou fazendo alterações no banco de dados e API.
+#### O projeto está atualmente em transição de tecnologia e design. 
+
+- tecnologia antiga : Django(Back-end) / ReactJs(Front-end) / Api externa
+
+- tecnologia futura : NextJs
+
+
+
+
